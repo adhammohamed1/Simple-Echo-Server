@@ -1,0 +1,41 @@
+import string_processing
+import socketserver
+
+# This is a simple socket server that receives a string from a client, processes it, and sends it back to the client.
+class EchoServer(socketserver.BaseRequestHandler):
+    def handle(self):
+        print("Got connection from", self.client_address)
+        while True:
+            
+            # Receive data packet from the client
+            received_data: str = self.request.recv(1024)
+            
+            # If the client has disconnected, break out of the loop
+            if not received_data: break
+
+            # Decode the data and process it
+            received_data = received_data.decode( 'utf-8' )
+
+            print( str(self.client_address) + " received: " + str(received_data) + 
+                    " --> Operation Type: " + string_processing.get_operation_type(received_data[0])[1] )
+
+            # Process the string and encode it
+            processed_data: str = string_processing.process_string( received_data )
+            processed_data = processed_data.encode( 'utf-8' )
+
+            # Send the processed data back to the client
+            self.request.sendall( processed_data )
+
+            print( str(self.client_address) + " sent: " + str(processed_data) )
+
+        print("Client disconnected")
+
+if __name__ == "__main__":
+    HOST, PORT = "localhost", 9999
+    print("Starting server at", HOST, PORT)
+
+    # Create the server, binding to localhost on port 9999.
+    # The server will keep running until the program is interrupted with Ctrl-C
+    with socketserver.TCPServer((HOST, PORT), EchoServer) as server:
+        server.serve_forever()
+        
