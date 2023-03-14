@@ -5,7 +5,9 @@ Python echo server that receives a string from a client, processes it and return
 - [Functionality](#functionality)
     + [What happens at the server side?](#what-happens-at-the-server-side)
     + [What happens at the client side?](#what-happens-at-the-client-side)
-- [Packet Sniffing Using Wireshark](#packet-sniffing-using-wireshark)
+- [Sample Run](#sample-run)
+    + [Terminal Outputs](#terminal-outputs)
+    + [Packet Sniffing Using Wireshark](#packet-sniffing-using-wireshark)
 
 ## Functionality
 
@@ -24,6 +26,16 @@ Python echo server that receives a string from a client, processes it and return
 - The client then sends the string to the server and awaits a response
 - The client receives a response from the server and prints it on the terminal.
 
-## Packet Sniffing Using Wireshark
+## Sample Run
+
+### Terminal Outputs
+
+![server-side](https://user-images.githubusercontent.com/90573502/225094636-c34b688a-d351-42ce-8582-6109e7c1f16a.png)
+
+![client-side](https://user-images.githubusercontent.com/90573502/225094665-6de1dc26-de0a-4caa-88d2-fe66338621b9.png)
+
+### Packet Sniffing Using Wireshark
 
 Wireshark was used to catch packets from the communication session. The following screenshot shows an example:
+
+![wireshark](https://user-images.githubusercontent.com/90573502/225092768-68724769-6b35-45c9-a303-3e1bb0693ddc.png)
